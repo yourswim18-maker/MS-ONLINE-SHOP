@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SWIM Mobile Store</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f5f7fb;
+  color: #172033;
+}
+
+header {
+  background: #101827;
+  color: white;
+  padding: 20px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: #00d4ff;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 18px;
+}
+
+.hero {
+  padding: 65px 8%;
+  background: linear-gradient(120deg,#101827,#164e85);
+  color: white;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 38px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  margin-bottom: 25px;
+  color: #dce9ff;
+}
+
+.btn {
+  background: #00c8e8;
+  color: #101827;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 7px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.search {
+  text-align: center;
+  padding: 30px 15px;
+}
+
+.search input {
+  width: 90%;
+  max-width: 450px;
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.products {
+  padding: 25px 7%;
+}
+
+.products h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+  gap: 22px;
+}
+
+.card {
+  background: white;
+  padding: 18px;
+  border-radius: 13px;
+  text-align: center;
+  box-shadow: 0 4px 15px #00000012;
+  transition: .3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.price {
+  color: #087e52;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 12px;
+}
+
+.card button {
+  background: #101827;
+  color: white;
+  padding: 11px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+}
+
+footer {
+  background: #101827;
+  color: white;
+  text-align: center;
+  padding: 25px;
+  margin-top: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">SWIM MOBILE</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#products">Products</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Welcome to SWIM Mobile Store</h1>
+  <p>Find Your Dream Smartphone at the Best Price!</p>
+  <a href="#products" class="btn">Shop Now</a>
+</section>
+
+<div class="search">
+  <input type="text" id="search"
+  placeholder="Search your favourite mobile..."
+  onkeyup="searchProducts()">
+</div>
+
+<section class="products" id="products">
+  <h2>Our Latest Smartphones</h2>
+
+  <div class="product-grid" id="productList">
+
+    <div class="card">
+      <img src="https://placehold.co/300x220?text=iPhone+15" alt="iPhone 15">
+      <h3>iPhone 15</h3>
+      <p>128GB Storage</p>
+      <div class="price">৳ 85,000</div>
+      <button onclick="order('iPhone 15')">Order Now</button>
+    </div>
+
+    <div class="card">
+      <img src="https://placehold.co/300x220?text=Samsung+S24" alt="Samsung S24">
+      <h3>Samsung Galaxy S24</h3>
+      <p>256GB Storage</p>
+      <div class="price">৳ 75,000</div>
+      <button onclick="order('Samsung Galaxy S24')">Order Now</button>
+    </div>
+
+    <div class="card">
+      <img src="https://placehold.co/300x220?text=Google+Pixel" alt="Google Pixel">
+      <h3>Google Pixel 8</h3>
+      <p>128GB Storage</p>
+      <div class="price">৳ 55,000</div>
+      <button onclick="order('Google Pixel 8')">Order Now</button>
+    </div>
+
+    <div class="card">
+      <img src="https://placehold.co/300x220?text=Redmi+Note" alt="Redmi Note">
+      <h3>Redmi Note 13</h3>
+      <p>256GB Storage</p>
+      <div class="price">৳ 25,000</div>
+      <button onclick="order('Redmi Note 13')">Order Now</button>
+    </div>
+
+  </div>
+</section>
+
+<footer id="contact">
+  <h3>SWIM MOBILE STORE</h3>
+  <p>Best Smartphones | Best Service</p>
+  <p>© 2026 SWIM Mobile Store</p>
+</footer>
+
+<script>
+function searchProducts() {
+  let input = document.getElementById("search").value.toLowerCase();
+  let cards = document.querySelectorAll(".card");
+
+  cards.forEach(card => {
+    let name = card.querySelector("h3").innerText.toLowerCase();
+    card.style.display = name.includes(input) ? "block" : "none";
+  });
+}
+
+function order(product) {
+  let phone = "8801XXXXXXXXX";
+  let message = "Hello, I want to order " + product;
+  window.open(
+    "https://wa.me/" + phone + "?text=" +
+    encodeURIComponent(message),
+    "_blank"
+  );
+}
+</script>
+
+</body>
+  </html>
+  
